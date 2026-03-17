@@ -73,54 +73,6 @@ export default function Index() {
     getUserPagination();
   }, []);
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#f5f5f5",
-      padding: 10,
-    },
-
-    card: {
-      flexDirection: "row",
-      backgroundColor: "#fff",
-      padding: 12,
-      marginBottom: 10,
-      borderRadius: 12,
-      shadowColor: "#000",
-      shadowOpacity: 0.1,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 3,
-    },
-
-    avatar: {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
-    },
-
-    info: {
-      marginLeft: 12,
-      justifyContent: "center",
-    },
-
-    name: {
-      fontSize: 16,
-      fontWeight: "bold",
-      marginBottom: 4,
-    },
-
-    text: {
-      fontSize: 13,
-      color: "#555",
-    },
-
-    loading: {
-      textAlign: "center",
-      marginVertical: 10,
-    },
-  });
-
   return (
     <View style={styles.container}>
       {error && (
@@ -176,3 +128,51 @@ export default function Index() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#f5f5f5",
+      padding: 10,
+    },
+
+    card: {
+      flexDirection: "row",
+      backgroundColor: "#fff",
+      padding: 12,
+      marginBottom: 10,
+      borderRadius: 12,
+      shadowColor: "#000",
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      shadowOffset: { width: 0, height: 3 },
+      elevation: 3,
+    },
+
+    avatar: {
+      width: 60,
+      height: 60,
+      borderRadius: 30,
+    },
+
+    info: {
+      marginLeft: 12,
+      justifyContent: "center",
+    },
+
+    name: {
+      fontSize: 16,
+      fontWeight: "bold",
+      marginBottom: 4,
+    },
+
+    text: {
+      fontSize: 13,
+      color: "#555",
+    },
+
+    loading: {
+      textAlign: "center",
+      marginVertical: 10,
+    },
+  });
