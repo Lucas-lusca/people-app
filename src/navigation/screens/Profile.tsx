@@ -1,55 +1,20 @@
+import { addChat } from '@/src/store/chatStore';
+import { User } from '@/src/types/User';
 import { Text } from '@react-navigation/elements';
-import { StaticScreenProps } from '@react-navigation/native';
+import { NavigationProp, StaticScreenProps, useNavigation } from '@react-navigation/native';
 import React from "react";
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
-
-type User = {
-  gender: string;
-  email: string;
-  phone: string;
-  cell: string;
-  nat: string;
-
-  name: {
-    title: string;
-    first: string;
-    last: string;
-  };
-
-  picture: {
-    large: string;
-  };
-
-  dob: {
-    age: number;
-  };
-
-  location: {
-    street: {
-      number: number;
-      name: string;
-    };
-    city: string;
-    state: string;
-    country: string;
-    postcode: string | number;
-  };
-
-  login: {
-    username: string;
-    uuid: string;
-  };
-
-  registered: {
-    age: number;
-  };
-};
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 type Props = StaticScreenProps<{
   user: User;
 }>;
 
 export function Profile({ route }: Props) {
+
+  type RootStackParamList = ReactNavigation.RootParamList;
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const { user } = route.params;
 
   return (
@@ -67,6 +32,18 @@ export function Profile({ route }: Props) {
         <Text style={styles.email}>
           {user.email}
         </Text>
+
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.8}
+          onPress={() => {
+            addChat(user);
+            navigation.navigate("Chat", { user })
+          }
+          }
+        >
+          <Text style={styles.buttonText}>Mensagem</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
@@ -165,6 +142,26 @@ const styles = StyleSheet.create({
   email: {
     fontSize: 14,
     color: "#777",
+  },
+
+  button: {
+    marginTop: 12,
+    backgroundColor: "#2563eb",
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 999,
+
+    shadowColor: "#2563eb",
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+  },
+
+  buttonText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "600",
   },
 
   card: {
