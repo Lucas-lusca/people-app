@@ -1,8 +1,13 @@
+import apiConnection from "@/src/services/api";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import apiConnection from "./services/api";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Index() {
+export function Home() {
+
+  type RootStackParamList = ReactNavigation.RootParamList;
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const [page, setPage] = useState(1);
   const [data, setData] = useState<any[]>([]);
@@ -30,6 +35,7 @@ export default function Index() {
         `/?page=${page}&results=${results}&seed=${seed}`
       );
 
+      // O ideal é a API devolver apenas os dados necessarios para essa tela
       setData(prev => [...prev, ...response.data.results]);
 
       setPage(prev => prev + 1);
@@ -83,10 +89,22 @@ export default function Index() {
 
       <FlatList
         data={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.login.uuid}
+        contentContainerStyle={styles.content}
 
         renderItem={({ item }) => (
-          <View style={styles.card}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.card}
+            onPress={() =>
+              // Aqui, o certo é passar apenas o ID e a tela 
+              // busca os dados necessarios.
+              // Mas a API não tem opção de busca de ID especifico
+              navigation.navigate("Profile", {
+                user: item
+              })
+            }
+          >
 
             <Image
               source={{ uri: item.picture?.thumbnail }}
@@ -94,7 +112,6 @@ export default function Index() {
             />
 
             <View style={styles.info}>
-
               <Text style={styles.name}>
                 {item.name?.first} {item.name?.last}
               </Text>
@@ -110,9 +127,9 @@ export default function Index() {
               <Text style={styles.text}>
                 País: {item.location?.country}
               </Text>
-
             </View>
-          </View>
+
+          </TouchableOpacity>
         )}
 
         onEndReached={getUserPagination}
@@ -130,49 +147,62 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#f5f5f5",
-      padding: 10,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#f2f4f7",
+  },
 
-    card: {
-      flexDirection: "row",
-      backgroundColor: "#fff",
-      padding: 12,
-      marginBottom: 10,
-      borderRadius: 12,
-      shadowColor: "#000",
-      shadowOpacity: 0.1,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 3,
-    },
+  content: {
+    padding: 16,
+    paddingBottom: 30,
+  },
 
-    avatar: {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
-    },
+  card: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    padding: 14,
+    marginBottom: 12,
+    borderRadius: 16,
+    alignItems: "center",
 
-    info: {
-      marginLeft: 12,
-      justifyContent: "center",
-    },
+    shadowColor: "#000",
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+  },
 
-    name: {
-      fontSize: 16,
-      fontWeight: "bold",
-      marginBottom: 4,
-    },
+  avatar: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
 
-    text: {
-      fontSize: 13,
-      color: "#555",
-    },
+    borderWidth: 2,
+    borderColor: "#eaeaea",
+  },
 
-    loading: {
-      textAlign: "center",
-      marginVertical: 10,
-    },
-  });
+  info: {
+    marginLeft: 14,
+    flex: 1,
+  },
+
+  name: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#1a1a1a",
+    marginBottom: 6,
+  },
+
+  text: {
+    fontSize: 13,
+    color: "#666",
+    marginBottom: 2,
+  },
+
+  loading: {
+    textAlign: "center",
+    marginVertical: 16,
+    color: "#777",
+  },
+
+});
