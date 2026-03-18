@@ -1,50 +1,26 @@
-# Welcome to your Expo app 👋
+## Sobre
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Projeto desenvolvido utilizando React Native com Expo, como parte de um desafio técnico em um processo seletivo.
 
-## Get started
+A aplicação consome dados de uma API externa (randomuser.me) e tem como objetivo demonstrar a estruturação de um app mobile, organização de código e integração com serviços externos.
 
-1. Install dependencies
+## Decisões técnicas
 
-   ```bash
-   npm install
-   ```
+- Foi utilizado **Axios** para realizar as requisições HTTP, por ser uma biblioteca consolidada e com amplo suporte na comunidade.
+- Inicialmente, o projeto foi estruturado utilizando **Expo Router**, porém, devido aos requisitos do desafio, a navegação foi migrada para **React Navigation**.
 
-2. Start the app
+## Desafios encontrados
 
-   ```bash
-   npx expo start
-   ```
+A parte mais complexa do desenvolvimento foi a implementação e organização das rotas.
 
-In the output, you'll find options to open the app in a
+Pessoalmente, acho complexo as opções de lidar com rotas disponíveis em projetos React Native Expo.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Atualmente, existe um bug relacionado às rotas que ainda não foi resolvido, devido à falta de domínio mais avançado sobre. Basicamente quando acessado o menu de perfil vindo da tela de chat, aparece no botão de voltar a tela de Feed, sendo que deveria mostrar a última tela acessada.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Persistência de dados
 
-## Get a fresh project
+Pensei em utilizar **SQLite** para armazenamento local do chat e mensagens. No entanto, com o objetivo de manter o projeto mais simples, decidi seguir utilizando arrays.
 
-When you're ready, run:
+## Observações
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+O desenvolvimento contou com o auxílio do ChatGPT, para a criação de interfaces, rotas de navegação e uso de `specialized hooks`, área na qual ainda estou em processo de aprendizado.
