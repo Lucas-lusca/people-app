@@ -4,6 +4,32 @@ Projeto desenvolvido utilizando React Native com Expo, como parte de um desafio 
 
 A aplicação consome dados de uma API externa (randomuser.me) e tem como objetivo demonstrar a estruturação de um app mobile, organização de código e integração com serviços externos.
 
+## Como testar o projeto
+
+Siga os passos abaixo para executar a aplicação em ambiente local.
+
+Pré-requisitos:
+
+- Ter o **Node.js** instalado na máquina
+- Ter um smartphone com o app **Expo Go** instalado
+
+Passo a passo:
+
+1. Clone ou baixe este repositório para sua máquina
+2. Instale as dependências do projeto:
+
+   ```bash
+   npx expo start
+   ```
+
+3. Inicie o projeto com o comando:
+
+   ```bash
+   npx expo start
+   ```
+
+Se tudo estiver correto, um QRCode será apresentado no terminal, basta ler com a câmera do seu smartphone e a aplicação será aberta.
+
 ## Decisões técnicas
 
 - Foi utilizado **Axios** para realizar as requisições HTTP, por ser uma biblioteca consolidada e com amplo suporte na comunidade.
