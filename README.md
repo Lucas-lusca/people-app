@@ -19,7 +19,7 @@ Passo a passo:
 2. Instale as dependências do projeto:
 
    ```bash
-   npx expo start
+   npm i
    ```
 
 3. Inicie o projeto com o comando:
